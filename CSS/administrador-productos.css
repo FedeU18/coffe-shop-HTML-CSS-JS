@@ -1,0 +1,34 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #ffd900;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#container {
+  width: 100%;
+  height: 100%;
+}
+
+#logo {
+  height: 30%;
+  width: 20%;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+#logo img {
+  width: 100%;
+}
+#opciones {
+  height: 70%;
+  border-right: 1px solid black;
+}
+
+#searchbar {
+  height: 10%;
+}
+
+#contenido {
+  height: 90%;
+}
