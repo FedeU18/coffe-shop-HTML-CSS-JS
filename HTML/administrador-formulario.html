@@ -15,7 +15,34 @@
     <table border="" id="container">
       <tr>
         <td id="logo"><img src="../imagenes/logo.png" alt="logo-cafe" /></td>
-        <td rowspan="2" id="formulario"></td>
+        <td rowspan="2" id="formulario">
+          <form action="">
+            <div>
+              <label for="">Nombre:</label>
+              <br />
+              <input type="text" />
+            </div>
+            <div>
+              <label for="">Precio:</label>
+              <br /><input type="number" />
+            </div>
+            <div>
+              <label for="">Categoria:</label>
+              <br />
+              <select name="categorias" id="categorias">
+                <option value="">-- --</option>
+                <option value="bebidas">Bebidas</option>
+                <option value="panaderia">Panadería</option>
+                <option value="reposteria">Repostería</option>
+              </select>
+            </div>
+            <div>
+              <label for="">Imagen</label>
+              <br />
+              <input type="text" />
+            </div>
+          </form>
+        </td>
       </tr>
       <tr>
         <td id="opciones"></td>
