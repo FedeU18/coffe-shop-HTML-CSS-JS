@@ -47,3 +47,6 @@ body {
 #elegido {
   background-color: #ffd900;
 }
+#opciones table tr td a {
+  text-decoration: none;
+}

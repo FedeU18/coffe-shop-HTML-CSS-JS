@@ -42,6 +42,9 @@ body {
   padding: 1em;
   margin: 1em;
 }
+#formulario form div {
+  margin: 0.5em 0 1.5em 0;
+}
 #opciones {
   text-align: center;
   height: 70%;
@@ -55,6 +58,9 @@ body {
   border-bottom: 1px solid gray;
   margin: 1em;
   padding: 1em 0;
+}
+#opciones table tr td a {
+  text-decoration: none;
 }
 
 #elegido {
