@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-color: #ffd900;
+  background-color: #fff;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 #container {
@@ -28,6 +28,7 @@ body {
   height: 100%;
   width: 55%;
   border-right: 1px solid black;
+  background-color: #eee;
 }
 #carrito {
   height: 100%;

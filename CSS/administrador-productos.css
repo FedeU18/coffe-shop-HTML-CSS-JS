@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-color: #ffd900;
+  background-color: #fff;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 #container {
@@ -27,8 +27,10 @@ body {
 
 #searchbar {
   height: 10%;
+  background-color: #eee;
 }
 
 #contenido {
   height: 90%;
+  background-color: #eee;
 }
