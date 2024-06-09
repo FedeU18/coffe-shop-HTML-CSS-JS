@@ -34,3 +34,21 @@ body {
   height: 90%;
   background-color: #eee;
 }
+#opciones {
+  text-align: center;
+  height: 70%;
+  border-right: 1px solid black;
+}
+
+#opciones table {
+  width: 100%;
+}
+#opciones table tr td {
+  border-bottom: 1px solid gray;
+  margin: 1em;
+  padding: 1em 0;
+}
+
+#elegido {
+  background-color: #ffd900;
+}
