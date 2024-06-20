@@ -108,4 +108,12 @@ const productos = [
     imagen: "imagenes/macaron.jpg",
   },
 ];
-console.log(productos);
+
+let cards = document.getElementById("cards");
+console.log(cards.childNodes);
+
+cards.innerHTML = `<div class="card">
+              <img src="../imagenes/espresso.jpg" alt="expresso" />
+              <h3>Expresso</h3>
+              <p>3.55$</p>
+            </div>`;
