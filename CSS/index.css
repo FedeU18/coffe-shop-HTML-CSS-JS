@@ -8,6 +8,7 @@ body {
 #container {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 #container tr td {
@@ -21,29 +22,32 @@ body {
   border-right: 1px solid black;
   vertical-align: middle;
   /* position: fixed; */
+  position: sticky;
 }
 #logo img {
   width: 100%;
 }
 #menu {
-  height: 100%;
+  height: 99vh;
   width: 55%;
   border-right: 1px solid black;
   background-color: #eee;
   vertical-align: top;
-  /* position: absolute; */
+  position: absolute;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 #carrito {
   height: 100%;
   width: 25%;
-  /* position: fixed; */
+  position: sticky;
 }
 #categorias {
   height: 70%;
   width: 20%;
   border-right: 1px solid black;
   vertical-align: middle;
-  /* position: fixed; */
+  position: sticky;
   /* top: 30%; */
 }
 
@@ -61,7 +65,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 1em;
-  gap: 2rem;
+  gap: 0.5rem;
 }
 .card {
   border: 1px solid black;

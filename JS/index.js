@@ -17,6 +17,42 @@ const productos = [
     categoria: "Panadería",
     imagen: "../imagenes/croissant.jpg",
   },
+  {
+    nombre: "Café Espresso",
+    precio: 2.5,
+    categoria: "Bebidas",
+    imagen: "../imagenes/espresso.jpg",
+  },
+  {
+    nombre: "Capuchino",
+    precio: 3.0,
+    categoria: "Bebidas",
+    imagen: "../imagenes/capuchino.jpg",
+  },
+  {
+    nombre: "Croissant",
+    precio: 1.5,
+    categoria: "Panadería",
+    imagen: "../imagenes/croissant.jpg",
+  },
+  {
+    nombre: "Café Espresso",
+    precio: 2.5,
+    categoria: "Bebidas",
+    imagen: "../imagenes/espresso.jpg",
+  },
+  {
+    nombre: "Capuchino",
+    precio: 3.0,
+    categoria: "Bebidas",
+    imagen: "../imagenes/capuchino.jpg",
+  },
+  {
+    nombre: "Croissant",
+    precio: 1.5,
+    categoria: "Panadería",
+    imagen: "../imagenes/croissant.jpg",
+  },
   // {
   //   nombre: "Tarta de Chocolate",
   //   precio: 4.0,
