@@ -69,11 +69,19 @@ body {
 }
 .card {
   border: 1px solid black;
+  border-radius: 0.5rem;
   background-color: #fff;
   width: 14em;
   height: 21em;
 }
+
+.card div {
+  height: 40%;
+}
+
 .card img {
+  border-radius: 0.5rem 0.5rem 0 0;
+  height: 60%;
   width: 100%;
   border-bottom: 1px solid black;
 }
