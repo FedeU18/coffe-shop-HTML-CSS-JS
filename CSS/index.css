@@ -58,6 +58,7 @@ body {
   border-bottom: 1px solid gray;
   margin: 1em;
   padding: 1em 0;
+  height: 100%;
 }
 
 #cards {
@@ -65,7 +66,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 1em;
-  gap: 0.5rem;
+  gap: 2rem;
 }
 .card {
   border: 1px solid black;
@@ -76,7 +77,33 @@ body {
 }
 
 .card div {
-  height: 40%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.card div span {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.card div div h4 {
+  width: 70%;
+}
+
+.card div div p {
+  width: 30%;
+}
+
+.card div button {
+  width: 50%;
 }
 
 .card img {
@@ -84,4 +111,16 @@ body {
   height: 60%;
   width: 100%;
   border-bottom: 1px solid black;
+}
+
+#todos,
+#Bebidas,
+#Panadería,
+#Repostería {
+  background-color: inherit;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  width: 100%;
+  padding: 1em;
 }
