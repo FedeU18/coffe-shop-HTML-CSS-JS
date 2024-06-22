@@ -129,9 +129,13 @@ const productos = [
 
 //iterar el arreglo de productos y mostrarlo en pantalla
 let cards = document.getElementById("cards");
-
+let agregadosAlCarrito = [];
 function agregarAlCarrito(id) {
-  console.log(id);
+  let producto = productos.find((prod) => (prod.id = id));
+  console.log(producto);
+  agregadosAlCarrito.push(producto);
+  let carritohtml = "";
+  agregadosAlCarrito.forEach((producto) => {});
 }
 
 function filtrar(id) {

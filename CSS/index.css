@@ -22,7 +22,7 @@ body {
   border-right: 1px solid black;
   vertical-align: middle;
   /* position: fixed; */
-  position: sticky;
+  position: static;
 }
 #logo img {
   width: 100%;
@@ -40,14 +40,15 @@ body {
 #carrito {
   height: 100%;
   width: 25%;
-  position: sticky;
+  position: static;
 }
+
 #categorias {
   height: 70%;
   width: 20%;
   border-right: 1px solid black;
   vertical-align: middle;
-  position: sticky;
+  position: static;
   /* top: 30%; */
 }
 
@@ -122,5 +123,29 @@ body {
   color: inherit;
   cursor: pointer;
   width: 100%;
+  padding: 1em;
+}
+
+#productos {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24%;
+  margin: 0.4em;
+}
+
+#productos div {
+  padding: 1em 0;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+}
+
+#carrito button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24%;
+  margin: 0.4em;
   padding: 1em;
 }
