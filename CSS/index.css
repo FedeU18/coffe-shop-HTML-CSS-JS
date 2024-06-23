@@ -95,11 +95,11 @@ body {
   width: 100%;
 }
 
-.card div div h4 {
+.card div span h4 {
   width: 70%;
 }
 
-.card div div p {
+.card div span p {
   width: 30%;
 }
 
