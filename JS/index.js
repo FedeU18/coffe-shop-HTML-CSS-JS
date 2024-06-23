@@ -131,11 +131,32 @@ const productos = [
 let cards = document.getElementById("cards");
 let agregadosAlCarrito = [];
 function agregarAlCarrito(id) {
-  let producto = productos.find((prod) => (prod.id = id));
-  console.log(producto);
+  let producto = productos.find((prod) => prod.id == id);
+  let carrito = document.getElementById("productos");
+  let total = document.getElementById("total");
   agregadosAlCarrito.push(producto);
   let carritohtml = "";
-  agregadosAlCarrito.forEach((producto) => {});
+  let totalhtml = "";
+  agregadosAlCarrito.forEach((productoAgregado) => {
+    carritohtml += `
+              <div>
+                <p>${productoAgregado.nombre}</p>
+                <p>${productoAgregado.precio}$</p>
+              </div>
+              `;
+  });
+  totalPrecios = 0;
+  agregadosAlCarrito.forEach((productoAgregado) => {
+    totalPrecios += productoAgregado.precio;
+  });
+  totalhtml += `
+              <div>
+                <p>Total</p>
+                <p>${totalPrecios}$</p>
+              </div>
+  `;
+  total.innerHTML = totalhtml;
+  carrito.innerHTML = carritohtml;
 }
 
 function filtrar(id) {

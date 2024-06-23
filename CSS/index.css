@@ -132,6 +132,9 @@ body {
   right: 0;
   width: 24%;
   margin: 0.4em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 70vh;
 }
 
 #productos div {
@@ -148,4 +151,20 @@ body {
   width: 24%;
   margin: 0.4em;
   padding: 1em;
+}
+
+#total {
+  position: absolute;
+  bottom: 3.5em;
+  right: 0;
+  width: 24%;
+  margin: 0.4em;
+  background-color: #ffd900;
+}
+#total div {
+  padding: 1em 0;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  display: flex;
+  justify-content: space-around;
 }
