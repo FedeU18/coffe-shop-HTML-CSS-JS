@@ -209,14 +209,22 @@ function cargarOrdenes() {
               <p>Precio total:
               ${orden.reduce((acc, producto) => acc + producto.precio, 0)}$
               </p>
+              <button onclick="ordenTerminada(${index})">Finalizada</button>
             </div>
         `;
       });
       ordenesRealizadas.innerHTML = ordeneshtml;
     } else {
-      ordenesRealizadas.innerHTML = "<span>No hay órdenes pendientes</span>";
+      ordenesRealizadas.innerHTML = "<h1>No hay órdenes pendientes</h1>";
     }
   }
+}
+
+function ordenTerminada(index) {
+  let ordenesGuardadas = JSON.parse(localStorage.getItem("ordenes")) || [];
+  ordenesGuardadas.splice(index, 1);
+  localStorage.setItem("ordenes", JSON.stringify(ordenesGuardadas));
+  cargarOrdenes();
 }
 
 // Llamar funciones dependiendo de la página
