@@ -1,3 +1,5 @@
+//index.html
+
 const productos = [
   {
     id: 1,
@@ -62,69 +64,6 @@ const productos = [
     categoria: "Repostería",
     imagen: "../imagenes/brownie.png",
   },
-  // {
-  //   id: 10,
-  //   nombre: "Muffin de Arándanos",
-  //   precio: 2.5,
-  //   categoria: "Repostería",
-  //   imagen: "../imagenes/muffin_arandanos.jpg",
-  // },
-  // {
-  //   id: 11,
-  //   nombre: "Té Verde",
-  //   precio: 2.0,
-  //   categoria: "Bebidas",
-  //   imagen: "../imagenes/te_verde.jpg",
-  // },
-  // {
-  //   id: 12,
-  //   nombre: "Té Negro",
-  //   precio: 2.0,
-  //   categoria: "Bebidas",
-  //   imagen: "../imagenes/te_negro.jpg",
-  // },
-  // {
-  //   id: 13,
-  //   nombre: "Café Mocha",
-  //   precio: 3.8,
-  //   categoria: "Bebidas",
-  //   imagen: "../imagenes/mocha.jpg",
-  // },
-  // {
-  //   id: 14,
-  //   nombre: "Café con Leche",
-  //   precio: 3.0,
-  //   categoria: "Bebidas",
-  //   imagen: "../imagenes/cafe_leche.jpg",
-  // },
-  // {
-  //   id: 15,
-  //   nombre: "Pan de Banana",
-  //   precio: 2.5,
-  //   categoria: "Panadería",
-  //   imagen: "../imagenes/pan_banana.jpg",
-  // },
-  // {
-  //   id: 16,
-  //   nombre: "Donut Glaseado",
-  //   precio: 1.8,
-  //   categoria: "Panadería",
-  //   imagen: "../imagenes/donut.jpg",
-  // },
-  // {
-  //   id: 17,
-  //   nombre: "Cheesecake",
-  //   precio: 3.5,
-  //   categoria: "Repostería",
-  //   imagen: "../imagenes/cheesecake.jpg",
-  // },
-  // {
-  //   id: 18,
-  //   nombre: "Macaron",
-  //   precio: 1.5,
-  //   categoria: "Repostería",
-  //   imagen: "../imagenes/macaron.jpg",
-  // },
 ];
 
 //iterar el arreglo de productos y mostrarlo en pantalla
@@ -139,28 +78,28 @@ function agregarAlCarrito(id) {
   let totalhtml = "";
   agregadosAlCarrito.forEach((productoAgregado) => {
     carritohtml += `
-              <div>
-                <p>${productoAgregado.nombre}</p>
-                <p>${productoAgregado.precio}$</p>
-              </div>
-              `;
+      <div>
+        <p>${productoAgregado.nombre}</p>
+        <p>${productoAgregado.precio}$</p>
+      </div>
+    `;
   });
-  totalPrecios = 0;
+  let totalPrecios = 0;
   agregadosAlCarrito.forEach((productoAgregado) => {
     totalPrecios += productoAgregado.precio;
   });
   totalhtml += `
-              <div>
-                <p>Total</p>
-                <p>${totalPrecios}$</p>
-              </div>
+    <div>
+      <p>Total</p>
+      <p>${totalPrecios}$</p>
+    </div>
   `;
   total.innerHTML = totalhtml;
   carrito.innerHTML = carritohtml;
 }
 
-function filtrar(id) {
-  mostrarProductos(id);
+function filtrar(categoria) {
+  mostrarProductos(categoria);
 }
 
 function mostrarProductos(categoria) {
@@ -173,44 +112,121 @@ function mostrarProductos(categoria) {
     categoria == "todos"
       ? productos
       : productos.filter((producto) => producto.categoria == categoria);
-  if (categoria == "todos") {
-    categoriaTodos.style.backgroundColor = "#ffd900";
-    categoriaBebidas.style.backgroundColor = "inherit";
-    categoriaPanaderia.style.backgroundColor = "inherit";
-    categoriaReposteria.style.backgroundColor = "inherit";
-  }
-  if (categoria == "Bebidas") {
-    categoriaTodos.style.backgroundColor = "inherit";
-    categoriaBebidas.style.backgroundColor = "#ffd900";
-    categoriaPanaderia.style.backgroundColor = "inherit";
-    categoriaReposteria.style.backgroundColor = "inherit";
-  }
-  if (categoria == "Panadería") {
-    categoriaTodos.style.backgroundColor = "inherit";
-    categoriaBebidas.style.backgroundColor = "inherit";
-    categoriaPanaderia.style.backgroundColor = "#ffd900";
-    categoriaReposteria.style.backgroundColor = "inherit";
-  }
-  if (categoria == "Repostería") {
-    categoriaTodos.style.backgroundColor = "inherit";
-    categoriaBebidas.style.backgroundColor = "inherit";
-    categoriaPanaderia.style.backgroundColor = "inherit";
-    categoriaReposteria.style.backgroundColor = "#ffd900";
-  }
 
-  productosFiltrados.forEach((producto) => {
-    cardhtml += `<div class="card">
-                <img src="${producto.imagen}" alt="${producto.nombre}" />
-                <div>
-                  <span>
-                    <h4>${producto.nombre}</h4>
-                    <p>${producto.precio}$</p>
-                  </span>
-                  <button onclick="agregarAlCarrito(${producto.id})"> Agregar </button>
-                </div>
-              </div>`;
-  });
-  cards.innerHTML = cardhtml;
+  if (
+    categoriaTodos != null &&
+    categoriaBebidas != null &&
+    categoriaPanaderia != null &&
+    categoriaReposteria != null
+  ) {
+    if (categoria == "todos") {
+      categoriaTodos.style.backgroundColor = "#ffd900";
+      categoriaBebidas.style.backgroundColor = "inherit";
+      categoriaPanaderia.style.backgroundColor = "inherit";
+      categoriaReposteria.style.backgroundColor = "inherit";
+    }
+    if (categoria == "Bebidas") {
+      categoriaTodos.style.backgroundColor = "inherit";
+      categoriaBebidas.style.backgroundColor = "#ffd900";
+      categoriaPanaderia.style.backgroundColor = "inherit";
+      categoriaReposteria.style.backgroundColor = "inherit";
+    }
+    if (categoria == "Panadería") {
+      categoriaTodos.style.backgroundColor = "inherit";
+      categoriaBebidas.style.backgroundColor = "inherit";
+      categoriaPanaderia.style.backgroundColor = "#ffd900";
+      categoriaReposteria.style.backgroundColor = "inherit";
+    }
+    if (categoria == "Repostería") {
+      categoriaTodos.style.backgroundColor = "inherit";
+      categoriaBebidas.style.backgroundColor = "inherit";
+      categoriaPanaderia.style.backgroundColor = "inherit";
+      categoriaReposteria.style.backgroundColor = "#ffd900";
+    }
+  }
+  if (cards != null) {
+    productosFiltrados.forEach((producto) => {
+      cardhtml += `
+      <div class="card">
+        <img src="${producto.imagen}" alt="${producto.nombre}" />
+        <div>
+          <span>
+            <h4>${producto.nombre}</h4>
+            <p>${producto.precio}$</p>
+          </span>
+          <button onclick="agregarAlCarrito(${producto.id})"> Agregar </button>
+        </div>
+      </div>
+      `;
+    });
+    cards.innerHTML = cardhtml;
+  }
 }
 
-mostrarProductos("todos");
+let ordenes = [];
+
+function finalizarOrden() {
+  let carrito = document.getElementById("productos");
+  let total = document.getElementById("total");
+
+  if (agregadosAlCarrito.length > 0) {
+    let ordenesGuardadas = JSON.parse(localStorage.getItem("ordenes")) || [];
+    ordenesGuardadas.push(agregadosAlCarrito);
+    localStorage.setItem("ordenes", JSON.stringify(ordenesGuardadas));
+
+    agregadosAlCarrito = [];
+    carrito.innerHTML = "";
+    total.innerHTML = `
+      <div>
+        <p>Total</p>
+        <p>0$</p>
+      </div>
+    `;
+  } else {
+    carrito.innerHTML =
+      "<div>Para comprar, primero debe agregar un producto al carrito</div>";
+  }
+}
+
+// ordenes.html
+function cargarOrdenes() {
+  let ordenesRealizadas = document.getElementById("ordenes");
+  let ordenesGuardadas = JSON.parse(localStorage.getItem("ordenes")) || [];
+
+  if (ordenesRealizadas != null) {
+    if (ordenesGuardadas.length > 0) {
+      let ordeneshtml = "";
+
+      ordenesGuardadas.forEach((orden, index) => {
+        ordeneshtml += `
+              <div>
+              <h4>Orden N° ${index + 1}</h4>
+              <ul>Productos:
+                ${orden
+                  .map((producto) => `<li>${producto.nombre}</li>`)
+                  .join("")}
+              </ul>
+              <p>Precio total:
+              ${orden.reduce((acc, producto) => acc + producto.precio, 0)}$
+              </p>
+            </div>
+        `;
+      });
+      ordenesRealizadas.innerHTML = ordeneshtml;
+    } else {
+      ordenesRealizadas.innerHTML = "<span>No hay órdenes pendientes</span>";
+    }
+  }
+}
+
+// Llamar funciones dependiendo de la página
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  let path = window.location.pathname;
+
+  if (path.includes("index.html")) {
+    mostrarProductos("todos");
+  } else if (path.includes("administrador-ordenes.html")) {
+    cargarOrdenes();
+  }
+});
