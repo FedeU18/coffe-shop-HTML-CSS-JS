@@ -66,6 +66,15 @@ const productos = [
   },
 ];
 
+//guardo el arreglo de productos en localStorage si es que no está guardado aún
+if (!localStorage.getItem("productos")) {
+  localStorage.setItem("productos", JSON.stringify(productos));
+}
+
+//cargo los productos de el localStorage
+let productosGuardados =
+  JSON.parse(localStorage.getItem("productos")) || productos;
+
 //iterar el arreglo de productos y mostrarlo en pantalla
 let cards = document.getElementById("cards");
 let agregadosAlCarrito = [];
@@ -108,10 +117,13 @@ function mostrarProductos(categoria) {
   let categoriaBebidas = document.getElementById("Bebidas");
   let categoriaPanaderia = document.getElementById("Panadería");
   let categoriaReposteria = document.getElementById("Repostería");
+
   let productosFiltrados =
     categoria == "todos"
-      ? productos
-      : productos.filter((producto) => producto.categoria == categoria);
+      ? productosGuardados
+      : productosGuardados.filter(
+          (producto) => producto.categoria == categoria
+        );
 
   if (
     categoriaTodos != null &&
