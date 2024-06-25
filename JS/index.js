@@ -131,30 +131,14 @@ function mostrarProductos(categoria) {
       categoriaPanaderia != null &&
       categoriaReposteria != null
     ) {
-      if (categoria == "todos") {
-        categoriaTodos.style.backgroundColor = "#ffd900";
-        categoriaBebidas.style.backgroundColor = "inherit";
-        categoriaPanaderia.style.backgroundColor = "inherit";
-        categoriaReposteria.style.backgroundColor = "inherit";
-      }
-      if (categoria == "Bebidas") {
-        categoriaTodos.style.backgroundColor = "inherit";
-        categoriaBebidas.style.backgroundColor = "#ffd900";
-        categoriaPanaderia.style.backgroundColor = "inherit";
-        categoriaReposteria.style.backgroundColor = "inherit";
-      }
-      if (categoria == "Panadería") {
-        categoriaTodos.style.backgroundColor = "inherit";
-        categoriaBebidas.style.backgroundColor = "inherit";
-        categoriaPanaderia.style.backgroundColor = "#ffd900";
-        categoriaReposteria.style.backgroundColor = "inherit";
-      }
-      if (categoria == "Repostería") {
-        categoriaTodos.style.backgroundColor = "inherit";
-        categoriaBebidas.style.backgroundColor = "inherit";
-        categoriaPanaderia.style.backgroundColor = "inherit";
-        categoriaReposteria.style.backgroundColor = "#ffd900";
-      }
+      categoriaTodos.style.backgroundColor =
+        categoria == "todos" ? "#ffd900" : "inherit";
+      categoriaBebidas.style.backgroundColor =
+        categoria == "Bebidas" ? "#ffd900" : "inherit";
+      categoriaPanaderia.style.backgroundColor =
+        categoria == "Panadería" ? "#ffd900" : "inherit";
+      categoriaReposteria.style.backgroundColor =
+        categoria == "Repostería" ? "#ffd900" : "inherit";
     }
     if (cards != null) {
       productosFiltrados.forEach((producto) => {
@@ -267,6 +251,46 @@ function cargarProductos() {
   } else {
     tablahtml = `<thead><tr><td>AÚN NO HAY PRODUCTOS CARGADOS</td></tr></thead>`;
     tabla.innerHTML = tablahtml;
+  }
+}
+
+function buscarProducto() {
+  let productoBuscado = document.getElementById("buscar").value.toLowerCase();
+  let productosGuardados = JSON.parse(localStorage.getItem("productos")) || [];
+  let tablaProductos = document.getElementById("body-productos");
+  let tabla = document.getElementById("tabla-productos");
+  let tablahtml = "";
+  let productoEncontrado = productosGuardados.filter((producto) =>
+    producto.nombre.toLowerCase().includes(productoBuscado)
+  );
+  console.log(productoEncontrado);
+  if (productoEncontrado.length > 0) {
+    productoEncontrado.forEach((producto) => {
+      tablahtml += `
+           <tr>
+              <td>${producto.id}</td>
+              <td>${producto.nombre}</td>
+              <td>${producto.precio}$</td>
+              <td>${producto.categoria}</td>
+              <td><button onclick="eliminarProducto(${producto.id})">Eliminar</button></td>
+            </tr>
+        `;
+    });
+    tablaProductos.innerHTML = tablahtml;
+  } else {
+    tablahtml = `
+    <tr>
+      <td colspan="5">
+        NO SE ENCONTRÓ EL PRODUCTO '${productoBuscado}'   
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5">
+        <button onclick="cargarProductos()">Recargar</button>
+      </td>
+    </tr>
+    `;
+    tablaProductos.innerHTML = tablahtml;
   }
 }
 
