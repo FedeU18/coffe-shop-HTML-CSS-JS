@@ -111,3 +111,12 @@ body {
 #searchbar div span {
   display: flex;
 }
+
+#tabla-productos button {
+  background-color: red;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}
