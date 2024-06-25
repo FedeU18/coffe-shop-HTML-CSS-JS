@@ -117,60 +117,66 @@ function mostrarProductos(categoria) {
   let categoriaPanaderia = document.getElementById("Panadería");
   let categoriaReposteria = document.getElementById("Repostería");
 
-  let productosFiltrados =
-    categoria == "todos"
-      ? productosGuardados
-      : productosGuardados.filter(
-          (producto) => producto.categoria == categoria
-        );
+  if (productosGuardados.length > 0) {
+    let productosFiltrados =
+      categoria == "todos"
+        ? productosGuardados
+        : productosGuardados.filter(
+            (producto) => producto.categoria == categoria
+          );
 
-  if (
-    categoriaTodos != null &&
-    categoriaBebidas != null &&
-    categoriaPanaderia != null &&
-    categoriaReposteria != null
-  ) {
-    if (categoria == "todos") {
-      categoriaTodos.style.backgroundColor = "#ffd900";
-      categoriaBebidas.style.backgroundColor = "inherit";
-      categoriaPanaderia.style.backgroundColor = "inherit";
-      categoriaReposteria.style.backgroundColor = "inherit";
+    if (
+      categoriaTodos != null &&
+      categoriaBebidas != null &&
+      categoriaPanaderia != null &&
+      categoriaReposteria != null
+    ) {
+      if (categoria == "todos") {
+        categoriaTodos.style.backgroundColor = "#ffd900";
+        categoriaBebidas.style.backgroundColor = "inherit";
+        categoriaPanaderia.style.backgroundColor = "inherit";
+        categoriaReposteria.style.backgroundColor = "inherit";
+      }
+      if (categoria == "Bebidas") {
+        categoriaTodos.style.backgroundColor = "inherit";
+        categoriaBebidas.style.backgroundColor = "#ffd900";
+        categoriaPanaderia.style.backgroundColor = "inherit";
+        categoriaReposteria.style.backgroundColor = "inherit";
+      }
+      if (categoria == "Panadería") {
+        categoriaTodos.style.backgroundColor = "inherit";
+        categoriaBebidas.style.backgroundColor = "inherit";
+        categoriaPanaderia.style.backgroundColor = "#ffd900";
+        categoriaReposteria.style.backgroundColor = "inherit";
+      }
+      if (categoria == "Repostería") {
+        categoriaTodos.style.backgroundColor = "inherit";
+        categoriaBebidas.style.backgroundColor = "inherit";
+        categoriaPanaderia.style.backgroundColor = "inherit";
+        categoriaReposteria.style.backgroundColor = "#ffd900";
+      }
     }
-    if (categoria == "Bebidas") {
-      categoriaTodos.style.backgroundColor = "inherit";
-      categoriaBebidas.style.backgroundColor = "#ffd900";
-      categoriaPanaderia.style.backgroundColor = "inherit";
-      categoriaReposteria.style.backgroundColor = "inherit";
+    if (cards != null) {
+      productosFiltrados.forEach((producto) => {
+        cardhtml += `
+          <div class="card">
+            <img src="${producto.imagen}" alt="${producto.nombre}" />
+            <div>
+              <span>
+                <h4>${producto.nombre}</h4>
+                <p>${producto.precio}$</p>
+              </span>
+              <button onclick="agregarAlCarrito(${producto.id})"> Agregar </button>
+            </div>
+          </div>
+          `;
+      });
+      cards.innerHTML = cardhtml;
     }
-    if (categoria == "Panadería") {
-      categoriaTodos.style.backgroundColor = "inherit";
-      categoriaBebidas.style.backgroundColor = "inherit";
-      categoriaPanaderia.style.backgroundColor = "#ffd900";
-      categoriaReposteria.style.backgroundColor = "inherit";
+  } else {
+    if (cards != null) {
+      cards.innerHTML = "<h1>AÚN NO HAY PRODUCTOS CARGADOS</h1>";
     }
-    if (categoria == "Repostería") {
-      categoriaTodos.style.backgroundColor = "inherit";
-      categoriaBebidas.style.backgroundColor = "inherit";
-      categoriaPanaderia.style.backgroundColor = "inherit";
-      categoriaReposteria.style.backgroundColor = "#ffd900";
-    }
-  }
-  if (cards != null) {
-    productosFiltrados.forEach((producto) => {
-      cardhtml += `
-      <div class="card">
-        <img src="${producto.imagen}" alt="${producto.nombre}" />
-        <div>
-          <span>
-            <h4>${producto.nombre}</h4>
-            <p>${producto.precio}$</p>
-          </span>
-          <button onclick="agregarAlCarrito(${producto.id})"> Agregar </button>
-        </div>
-      </div>
-      `;
-    });
-    cards.innerHTML = cardhtml;
   }
 }
 
@@ -241,8 +247,39 @@ function ordenTerminada(index) {
 //productos.html
 
 function cargarProductos() {
-  let tablaProductos = document.getElementById("contenido");
-  console.log(tablaProductos);
+  let tablaProductos = document.getElementById("body-productos");
+  let tabla = document.getElementById("tabla-productos");
+  let productosGuardados = JSON.parse(localStorage.getItem("productos")) || [];
+  let tablahtml = "";
+  if (productosGuardados.length > 0) {
+    productosGuardados.forEach((producto) => {
+      tablahtml += `
+         <tr>
+            <td>${producto.id}</td>
+            <td>${producto.nombre}</td>
+            <td>${producto.precio}$</td>
+            <td>${producto.categoria}</td>
+            <td><button onclick="eliminarProducto(${producto.id})">Eliminar</button></td>
+          </tr>
+      `;
+      tablaProductos.innerHTML = tablahtml;
+    });
+  } else {
+    tablahtml = `<thead><tr><td>AÚN NO HAY PRODUCTOS CARGADOS</td></tr></thead>`;
+    tabla.innerHTML = tablahtml;
+  }
+}
+
+function eliminarProducto(id) {
+  if (confirm("¿Está seguro que desea realizar esta acción?")) {
+    let productosGuardados =
+      JSON.parse(localStorage.getItem("productos")) || [];
+    productosGuardados = productosGuardados.filter(
+      (producto) => producto.id != id
+    );
+    localStorage.setItem("productos", JSON.stringify(productosGuardados));
+  }
+  cargarProductos();
 }
 
 //formulario.html
