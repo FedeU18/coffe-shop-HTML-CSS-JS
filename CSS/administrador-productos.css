@@ -119,4 +119,5 @@ body {
   color: white;
   font-weight: bold;
   padding: 0.5rem 1rem;
+  cursor: pointer;
 }
