@@ -19,20 +19,27 @@ body {
 
 #logo img {
   width: 100%;
+  position: static;
 }
 #opciones {
   height: 70%;
   border-right: 1px solid black;
+  position: static;
 }
 
 #searchbar {
   height: 10%;
   background-color: #eee;
+  position: static;
 }
 
 #contenido {
-  height: 90%;
+  height: 69%;
   background-color: #eee;
+  position: absolute;
+  width: 79%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 #opciones {
   text-align: center;
@@ -54,4 +61,53 @@ body {
 }
 #opciones table tr td a {
   text-decoration: none;
+}
+
+#tabla-productos {
+  width: 100%;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+#contenido h3 {
+  margin: 1em;
+}
+
+#tabla-productos thead tr td {
+  padding: 1rem;
+  border-bottom: 2px solid black;
+  font-weight: bold;
+}
+#tabla-productos tbody tr td {
+  padding: 1rem;
+  border-bottom: 1px solid black;
+}
+
+#searchbar div {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#searchbar div span input {
+  height: 2rem;
+  border-radius: 1em 0 0 1em;
+  border-right: 0;
+  padding: 0.1rem 1rem;
+}
+
+#searchbar div span button {
+  height: 2rem;
+  padding: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 1em 1em 0;
+  background-color: #ffd900;
+  cursor: pointer;
+}
+
+#searchbar div span {
+  display: flex;
 }

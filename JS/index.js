@@ -72,17 +72,16 @@ if (!localStorage.getItem("productos")) {
 }
 
 //cargo los productos de el localStorage
-let productosGuardados =
-  JSON.parse(localStorage.getItem("productos")) || productos;
+let productosGuardados = JSON.parse(localStorage.getItem("productos")) || [];
 
 //iterar el arreglo de productos y mostrarlo en pantalla
 let cards = document.getElementById("cards");
 let agregadosAlCarrito = [];
 function agregarAlCarrito(id) {
-  let producto = productos.find((prod) => prod.id == id);
+  let productoAlCarrito = productosGuardados.find((prod) => prod.id == id);
   let carrito = document.getElementById("productos");
   let total = document.getElementById("total");
-  agregadosAlCarrito.push(producto);
+  agregadosAlCarrito.push(productoAlCarrito);
   let carritohtml = "";
   let totalhtml = "";
   agregadosAlCarrito.forEach((productoAgregado) => {
@@ -239,6 +238,15 @@ function ordenTerminada(index) {
   cargarOrdenes();
 }
 
+//productos.html
+
+function cargarProductos() {
+  let tablaProductos = document.getElementById("contenido");
+  console.log(tablaProductos);
+}
+
+//formulario.html
+
 // Llamar funciones dependiendo de la página
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -248,5 +256,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     mostrarProductos("todos");
   } else if (path.includes("administrador-ordenes.html")) {
     cargarOrdenes();
+  } else if (path.includes("administrador-productos.html")) {
+    cargarProductos();
   }
 });
