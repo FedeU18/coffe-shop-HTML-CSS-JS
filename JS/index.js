@@ -258,37 +258,42 @@ function buscarProducto() {
   let productoBuscado = document.getElementById("buscar").value.toLowerCase();
   let productosGuardados = JSON.parse(localStorage.getItem("productos")) || [];
   let tablaProductos = document.getElementById("body-productos");
-  let tabla = document.getElementById("tabla-productos");
   let tablahtml = "";
   let productoEncontrado = productosGuardados.filter((producto) =>
     producto.nombre.toLowerCase().includes(productoBuscado)
   );
-  console.log(productoEncontrado);
   if (productoEncontrado.length > 0) {
     productoEncontrado.forEach((producto) => {
       tablahtml += `
-           <tr>
-              <td>${producto.id}</td>
-              <td>${producto.nombre}</td>
-              <td>${producto.precio}$</td>
-              <td>${producto.categoria}</td>
-              <td><button onclick="eliminarProducto(${producto.id})">Eliminar</button></td>
-            </tr>
-        `;
+        <tr>
+          <td>${producto.id}</td>
+          <td>${producto.nombre}</td>
+          <td>${producto.precio}$</td>
+          <td>${producto.categoria}</td>
+          <td><button onclick="eliminarProducto(${producto.id})">Eliminar</button></td>
+        </tr>
+      `;
     });
+    tablahtml += `
+      <tr>
+        <td colspan="5">
+          <button onclick="cargarProductos()">Recargar</button>
+        </td>
+      </tr>
+    `;
     tablaProductos.innerHTML = tablahtml;
   } else {
     tablahtml = `
-    <tr>
-      <td colspan="5">
-        NO SE ENCONTRÓ EL PRODUCTO '${productoBuscado}'   
-      </td>
-    </tr>
-    <tr>
-      <td colspan="5">
-        <button onclick="cargarProductos()">Recargar</button>
-      </td>
-    </tr>
+      <tr>
+        <td colspan="5">
+          NO SE ENCONTRÓ EL PRODUCTO '${productoBuscado}'   
+        </td>
+      </tr>
+      <tr>
+        <td colspan="5">
+          <button onclick="cargarProductos()">Recargar</button>
+        </td>
+      </tr>
     `;
     tablaProductos.innerHTML = tablahtml;
   }
@@ -308,6 +313,70 @@ function eliminarProducto(id) {
 
 //formulario.html
 
+function inputfocus(id) {
+  let inputSeleccionado = document.getElementById(id);
+  inputSeleccionado.style.backgroundColor = "#f8e991";
+  inputSeleccionado.style.borderColor = "black";
+  inputSeleccionado.style.scale = "1.05";
+}
+function inputblur(id) {
+  let inputSeleccionado = document.getElementById(id);
+  inputSeleccionado.style.backgroundColor = "inherit";
+  inputSeleccionado.style.scale = "1";
+  pintarInput(inputSeleccionado);
+}
+
+function inputonchange(id) {
+  let inputSeleccionado = document.getElementById(id);
+  pintarInput(inputSeleccionado);
+}
+
+function pintarInput(inputSeleccionado) {
+  if (inputSeleccionado.value === "") {
+    inputSeleccionado.style.borderColor = "red";
+  } else {
+    inputSeleccionado.style.borderColor = "green";
+  }
+
+  if (inputSeleccionado.id === "imagen") {
+    let imagenValue = inputSeleccionado.value;
+    if (
+      !imagenValue.startsWith("http://") &&
+      !imagenValue.startsWith("https://")
+    ) {
+      inputSeleccionado.style.borderColor = "red";
+    } else {
+      inputSeleccionado.style.borderColor = "green";
+    }
+  }
+
+  manejarBtnSubmit();
+}
+
+function manejarBtnSubmit() {
+  let nombre = document.getElementById("nombre");
+  let precio = document.getElementById("precio");
+  let categoria = document.getElementById("categorias");
+  let imagen = document.getElementById("imagen");
+  let btnSubmit = document.getElementById("btn-submit");
+
+  if (
+    nombre.value === "" ||
+    precio.value === "" ||
+    categoria.value === "" ||
+    (!imagen.value.startsWith("http://") &&
+      !imagen.value.startsWith("https://"))
+  ) {
+    btnSubmit.disabled = true;
+  } else {
+    btnSubmit.disabled = false;
+  }
+}
+
+function agregarProducto(event) {
+  event.preventDefault();
+}
+
 // Llamar funciones dependiendo de la página
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -319,5 +388,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     cargarOrdenes();
   } else if (path.includes("administrador-productos.html")) {
     cargarProductos();
+  } else if (path.includes("administrador-formulario.html")) {
+    let formulario = document.getElementById("formulario-producto");
+    formulario.addEventListener("submit", agregarProducto);
   }
 });
