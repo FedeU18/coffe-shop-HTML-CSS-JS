@@ -89,6 +89,7 @@ function agregarAlCarrito(id) {
       <div>
         <p>${productoAgregado.nombre}</p>
         <p>${productoAgregado.precio}$</p>
+        <button id="quitar" onclick="quitarProducto()">X</button>
       </div>
     `;
   });
@@ -104,6 +105,10 @@ function agregarAlCarrito(id) {
   `;
   total.innerHTML = totalhtml;
   carrito.innerHTML = carritohtml;
+}
+
+function quitarProducto() {
+  console.log("quitar Producto");
 }
 
 function filtrar(categoria) {
