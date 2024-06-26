@@ -356,7 +356,7 @@ function pintarInput(inputSeleccionado) {
 function manejarBtnSubmit() {
   let nombre = document.getElementById("nombre");
   let precio = document.getElementById("precio");
-  let categoria = document.getElementById("categorias");
+  let categoria = document.getElementById("categoria");
   let imagen = document.getElementById("imagen");
   let btnSubmit = document.getElementById("btn-submit");
 
@@ -375,6 +375,38 @@ function manejarBtnSubmit() {
 
 function agregarProducto(event) {
   event.preventDefault();
+  let formulario = document.getElementById("formulario-producto");
+  let nombre = document.getElementById("nombre").value;
+  let precio = document.getElementById("precio").value;
+  let categoria = document.getElementById("categoria").value;
+  let imagen = document.getElementById("imagen").value;
+
+  if (nombre !== "" && precio !== "" && categoria !== "" && imagen !== "") {
+    let productosGuardados =
+      JSON.parse(localStorage.getItem("productos")) || [];
+    let productosOrdenados = productosGuardados.sort((a, b) => a.id - b.id);
+    let nuevoProducto = {
+      //obtengo el id numérico más alto y le sumo uno para crear un nuevo id para el nuevo producto
+      id:
+        productosGuardados.length > 0
+          ? productosOrdenados[productosOrdenados.length - 1].id + 1
+          : 1,
+      nombre: nombre,
+      precio: precio,
+      categoria: categoria,
+      imagen: imagen,
+    };
+
+    productosGuardados.push(nuevoProducto);
+    localStorage.setItem("productos", JSON.stringify(productosGuardados));
+    //reseteo el formulario
+    formulario.reset();
+    alert("¡Producto agregado con éxito!");
+    // llamo esta función para que se vuelva a desactivar el botón de submit
+    manejarBtnSubmit();
+  } else {
+    alert("No se puede enviar el formulario vacío");
+  }
 }
 
 // Llamar funciones dependiendo de la página
@@ -389,7 +421,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
   } else if (path.includes("administrador-productos.html")) {
     cargarProductos();
   } else if (path.includes("administrador-formulario.html")) {
+    //evita que el formulario se envíe
     let formulario = document.getElementById("formulario-producto");
     formulario.addEventListener("submit", agregarProducto);
+    //desactiva el botón de submit al cargar la página
+    manejarBtnSubmit();
   }
 });
