@@ -82,33 +82,49 @@ function agregarAlCarrito(id) {
   let carrito = document.getElementById("productos");
   let total = document.getElementById("total");
   agregadosAlCarrito.push(productoAlCarrito);
+
+  actualizarCarrito(carrito, total);
+}
+
+function quitarProducto(id) {
+  agregadosAlCarrito = agregadosAlCarrito.filter(
+    (producto) => producto.id !== id
+  );
+
+  let carrito = document.getElementById("productos");
+  let total = document.getElementById("total");
+
+  actualizarCarrito(carrito, total);
+}
+
+function actualizarCarrito(carrito, total) {
   let carritohtml = "";
   let totalhtml = "";
+
   agregadosAlCarrito.forEach((productoAgregado) => {
     carritohtml += `
       <div>
         <p>${productoAgregado.nombre}</p>
         <p>${productoAgregado.precio}$</p>
-        <button id="quitar" onclick="quitarProducto()">X</button>
+        <button id="quitar" onclick="quitarProducto(${productoAgregado.id})">X</button>
       </div>
     `;
   });
+
   let totalPrecios = 0;
   agregadosAlCarrito.forEach((productoAgregado) => {
     totalPrecios += productoAgregado.precio;
   });
+
   totalhtml += `
     <div>
       <p>Total</p>
       <p>${totalPrecios}$</p>
     </div>
   `;
+  console.log(agregadosAlCarrito);
   total.innerHTML = totalhtml;
   carrito.innerHTML = carritohtml;
-}
-
-function quitarProducto() {
-  console.log("quitar Producto");
 }
 
 function filtrar(categoria) {
