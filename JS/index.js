@@ -122,7 +122,6 @@ function actualizarCarrito(carrito, total) {
       <p>${totalPrecios}$</p>
     </div>
   `;
-  console.log(agregadosAlCarrito);
   total.innerHTML = totalhtml;
   carrito.innerHTML = carritohtml;
 }
